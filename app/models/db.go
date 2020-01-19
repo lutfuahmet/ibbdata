@@ -11,7 +11,7 @@ var DB *gorm.DB
 
 func init() {
 	var err error
-	DB, err = gorm.Open("sqlite3", "data.db")
+	DB, err = gorm.Open("sqlite3", "/tmp/ibbdata.db")
 	if err != nil {
 		log.Fatal(err)
 	}
