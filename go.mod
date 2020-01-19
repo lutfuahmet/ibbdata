@@ -27,7 +27,7 @@ require (
 	github.com/qor/roles v0.0.0-20171127035124-d6375609fe3e // indirect
 	github.com/qor/serializable_meta v0.0.0-20180510060738-5fd8542db417 // indirect
 	github.com/qor/session v0.0.0-20170907035918-8206b0adab70 // indirect
-	github.com/qor/validations v0.0.0-20171228122639-f364bca61b46 // indirect
+	github.com/qor/validations v0.0.0-20171228122639-f364bca61b46
 	github.com/stretchr/testify v1.4.0 // indirect
 	github.com/tealeg/xlsx v1.0.5
 	github.com/theplant/cldr v0.0.0-20190423050709-9f76f7ce4ee8 // indirect
