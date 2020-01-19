@@ -30,86 +30,6 @@ type Park struct {
 	Address string `gorm:"type:text;"`
 }
 
-// ParkLocation model
-type ParkLocation struct {
-	gorm.Model
-	Name string
-	Code uint `gorm:"unique;not null"`
-}
-
-// Init for ParkLocation
-func (p ParkLocation) Init() (parklocation ParkLocation,err error) {
-	parklocation = ParkLocation{}
-	DB.First(&parklocation,p.ID)
-	if parklocation.ID == 0 {
-		if err = DB.Create(&p).Error;err != nil{
-			return
-		}
-		return p,nil
-	}
-	return
-}
-
-// ParkType model
-type ParkType struct {
-	gorm.Model
-	Name string
-}
-
-// Init for ParkType
-func (p ParkType) Init() (parkType ParkType,err error) {
-	parkType = ParkType{}
-	DB.First(&parkType,p.ID)
-	if parkType.ID == 0 {
-		if err = DB.Create(&p).Error;err != nil {
-			return
-		}
-		return p,nil
-	}
-	return
-}
-
-
-// ParkZone model
-type ParkZone struct {
-	gorm.Model
-	Name string
-}
-
-// Init for ParkZone
-func (p ParkZone) Init() (parkZone ParkZone,err error) {
-	parkZone = ParkZone{}
-	DB.First(&parkZone,p.ID)
-	if parkZone.ID == 0 {
-		if err = DB.Create(&p).Error;err!=nil {
-			return
-		}
-		return p,nil
-	}
-	return
-}
-
-// ParkSubZone model
-type ParkSubZone struct {
-	gorm.Model
-	Name string
-	ParkZone ParkZone
-	ParkZoneID uint
-}
-
-// Init for ParkZone
-func (p ParkSubZone) Init() (parkSubZone ParkSubZone,err error) {
-	parkSubZone = ParkSubZone{}
-	DB.First(&parkSubZone,p.ID)
-	if parkSubZone.ID == 0 {
-		if err = DB.Create(&p).Error;err != nil {
-			return
-		}
-		return p,nil
-	}
-	return
-}
-
 // Row2Park helper
 func Row2Park(row *xlsx.Row) (park Park,err error) {
 	park = Park{}
@@ -202,6 +122,5 @@ func Row2Park(row *xlsx.Row) (park Park,err error) {
 	park.FreeParkingTime = uint(freeParkingTime)
 	park.Tariffs = cells[22].String()
 	park.IsParkContinuePoint = cells[23].Bool()
-
 	return 
 }
