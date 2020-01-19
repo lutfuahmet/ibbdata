@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/jinzhu/gorm"
+	"fmt"
 	"github.com/tealeg/xlsx"
 )
 
@@ -30,10 +31,23 @@ type Park struct {
 	Address string `gorm:"type:text;"`
 }
 
+// GetAllParks => Parks
+func GetAllParks() []Park {
+	var parks []Park
+	DB.Find(&parks)
+	return parks
+}
+
 // Row2Park helper
 func Row2Park(row *xlsx.Row) (park Park,err error) {
 	park = Park{}
 	cells := row.Cells
+
+	if len(cells) < 24 {
+		err = fmt.Errorf("missing cells :  %d",len(cells))
+		return
+	}
+
 	parkID,_ := cells[0].Int()
 	park.ID = uint(parkID)
 	park.Name = cells[1].String()
@@ -122,5 +136,7 @@ func Row2Park(row *xlsx.Row) (park Park,err error) {
 	park.FreeParkingTime = uint(freeParkingTime)
 	park.Tariffs = cells[22].String()
 	park.IsParkContinuePoint = cells[23].Bool()
+
+	err = DB.Create(&park).Error
 	return 
 }

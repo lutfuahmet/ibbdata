@@ -3,7 +3,6 @@ package models
 import (
 	"errors"
 	"strings"
-
 	"github.com/jinzhu/gorm"
 )
 
