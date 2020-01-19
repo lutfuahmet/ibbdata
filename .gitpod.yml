@@ -4,6 +4,6 @@ ports:
 
 # List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/44_config_start_tasks/
 tasks:
-  - init: go get github.com/nomad-software/vend && vend # runs during prebuild
-    command: go run main.go
+  - init: cd /workspace/ibbdata && go get github.com/nomad-software/vend && vend # runs during prebuild
+    command: cd /workspace/ibbdata && go run main.go
     command: cd /workspace/ibbdata/cmd/import && go run main.go
