@@ -1,8 +1,9 @@
 package models
 
 import (
-  "github.com/jinzhu/gorm"
+  	"github.com/jinzhu/gorm"
 	"log"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
 // DB ...

@@ -1,10 +1,21 @@
 package main
 
 import (
-	 "github.com/qor/admin"
-	  _ "github.com/jinzhu/gorm/dialects/sqlite"
+	"github.com/qor/admin"
+	"log"
+	"ibbdata/app/models"
+	"net/http"
 )
 
+var panel *admin.Admin
+
 func main(){
-	Admin := admin.New(&admin.AdminConfig{DB: models.DB})
+	panel = admin.New(&admin.AdminConfig{DB: models.DB})
+	panel.AddResource(&models.Park{})
+
+	mux := http.NewServeMux()
+	// Mount admin to the mux
+  	panel.MountTo("/", mux)
+
+  	log.Fatal(http.ListenAndServe(":3000", mux))
 }

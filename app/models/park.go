@@ -22,7 +22,7 @@ type Park struct {
 	Tariffs string `gorm:"type:text;"`
 	FreeParkingTime uint
 	IsParkContinuePoint bool
-	Address `gorm:"type:text;"`
+	Address string `gorm:"type:text;"`
 }
 
 // ParkLocation model
